@@ -3,20 +3,12 @@ services:
     container_name: pihole_service
     image: pihole/pihole:latest
     ports:
-      - '7053:53/tcp'
-      - '7053:53/udp'
-      - '7080:80/tcp'
+      - 7053:53/tcp
+      - 7053:53/udp
+      - 7080:80/tcp
     environment:
-      TZ: 'Eire'
+      TZ: Eire
     volumes:
-      - './etc-pihole:/etc/pihole'
-      - './etc-dnsmasq.d:/etc/dnsmasq.d'
-    networks:
-      devbox_network:
-        ipv4_address: 172.20.10.3
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
     restart: unless-stopped
-
-networks:
-  devbox_network:
-    external:
-      name: devbox_network

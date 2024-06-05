@@ -1,20 +1,12 @@
 services:
   nginx_proxy_manager_service:
     container_name: nginx_proxy_manager_service
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: jc21/nginx-proxy-manager:latest
     ports:
-      - '8080:80'
-      - '8081:81'
-      - '8443:443'
+      - 8080:80
+      - 8081:81
+      - 8443:443
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
-    networks:
-      devbox_network:
-        ipv4_address: 172.20.10.2
     restart: unless-stopped
-
-networks:
-  devbox_network:
-    external:
-      name: devbox_network
