@@ -2,18 +2,13 @@ services:
   pihole_service:
     container_name: pihole_service
     image: pihole/pihole:latest
-    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
     ports:
       - '7053:53/tcp'
       - '7053:53/udp'
-      - '7067:67/udp' # Only required if you are using Pi-hole as your DHCP server
       - '7080:80/tcp'
     environment:
-      TZ: 'Eire' # Time zode identifier
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      TZ: 'Eire'
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
-    cap_add:
-      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
