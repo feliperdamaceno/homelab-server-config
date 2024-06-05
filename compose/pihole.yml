@@ -11,4 +11,12 @@ services:
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    networks:
+      devbox_network:
+        ipv4_address: 172.20.10.3
     restart: unless-stopped
+
+networks:
+  devbox_network:
+    external:
+      name: devbox_network
