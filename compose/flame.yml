@@ -1,0 +1,11 @@
+services:
+  flame_service:
+    container_name: flame_service
+    image: pawelmalak/flame:multiarch
+    ports:
+      - 8005:5005
+    environment:
+      - PASSWORD=changeme
+    volumes:
+      - /home/USERNAME_HERE/.flame:/app/data
+    restart: unless-stopped
